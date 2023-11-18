@@ -1,0 +1,18 @@
+ARG RELEASE
+FROM ${RELEASE} as rstmap_angular_release
+ARG RELEASE
+
+
+# Use official nginx image as the base image
+FROM nginx:1.25.3
+
+SHELL ["/bin/bash", "-cl"]
+
+# Copy the build output to replace the default nginx contents.
+COPY --from=rstmap_angular_release /app/dist /usr/share/nginx/html
+
+
+# Expose port 80
+EXPOSE 80
+
+

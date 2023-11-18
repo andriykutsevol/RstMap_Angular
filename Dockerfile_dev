@@ -1,0 +1,13 @@
+ARG RELEASE
+
+FROM ${RELEASE} 
+ARG RELEASE
+
+WORKDIR /app
+
+EXPOSE 4200
+
+
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["development"]
+

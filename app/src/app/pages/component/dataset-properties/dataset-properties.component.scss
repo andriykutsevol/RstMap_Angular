@@ -1,0 +1,165 @@
+
+
+
+.btn-info{
+  background: #1e88e5;
+  border: 1px solid #1e88e5;
+  -webkit-box-shadow: 0 14px 26px -12px rgba(23, 105, 255, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(23, 105, 255, 0.2);
+  box-shadow: 0 14px 26px -12px rgba(23, 105, 255, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(23, 105, 255, 0.2);
+}
+
+
+.message-box .message-widget a:hover{
+  border-left: 3px solid #009efb !important;
+  //border-color: #009efb;
+  background: #ffffff;
+}
+
+
+.message-box .message-widget a{
+    border-bottom: 1px solid rgba(102, 119, 136, 0.13);
+    border-left: 3px solid #ffffff;
+}
+
+.message-active{
+  border-left: 3px solid #009efb !important;
+  background: #e2e4e7 !important;
+}
+
+
+.message-box{
+  //height: 100px;
+  margin-top: 25px;
+}
+
+// .message-widget{
+//   height: 100px;
+// }
+
+
+::ng-deep.ui-slider .ui-slider-range {
+  background-color: #838688 ;
+}
+
+::ng-deep.ui-slider-horizontal .ui-slider-handle {
+  top: -6px !important;
+}
+
+::ng-deep.ui-slider-horizontal {
+  height: 5px;
+}
+
+.nav-tabs{
+  background-color: #fafafa;
+}
+
+.tab-content{
+  //padding-left: 10px;
+  padding-right: 25px;
+}
+
+
+.feeds li{
+  padding: 0;
+}
+
+
+.mat-app-background {
+  background-color: #ffffff;
+}
+
+.tabcontent-border {
+  border: none;
+  border-top: none;
+}
+
+
+#data_load_button{
+  width:70%;
+}
+
+.some_dataset_controls{
+  margin-top: 18px;
+  padding-left: 15px;
+  // padding-right: 20px;
+}
+
+
+#dataset_date{
+  line-height: 40px;
+}
+
+.tab-pane {
+
+  animation-duration: 3s;
+  animation-name: slidein;
+  animation-iteration-count: infinite;
+
+
+}
+
+
+
+.region_data {
+
+  margin-bottom: 10px;
+
+  .data_label{
+    font-weight: 600;
+    padding-right: 10px;
+  }
+
+}
+
+
+#dataset_date{
+  margin-top: 13px;
+}
+
+.feeds li:hover {
+  background: #75bacc;
+}
+
+
+
+
+#data-box {
+  top: 10px;
+  left: 500px;
+  height: 45px;
+  line-height: 45px;
+  display: none;
+}
+#zillow-variable {
+  width: 360px;
+  height: 20px;
+}
+
+
+
+
+.dataset_wrapper{
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.card-no-border .card{
+ border: none;
+}
+
+.card{
+  border: none;
+}
+
+
+
+.pdleft20{
+  padding-right: 20px;
+}
+
+#exclude_field_button{
+  width: 90px;
+  margin-left: 15px;
+}
+
+

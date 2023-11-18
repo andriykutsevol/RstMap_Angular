@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+              <input type="text" #messageref class="form-control" id="message">
+              <br>
+              <br>
+              <button type="button" (click)='socketConnect(messageref)' class="btn btn-rounded btn-primary">Open Socket</button>
+              <br>
+              <br>
+              <button type="button" (click)='sendMsg(messageref)' class="btn btn-rounded btn-primary">Send Message</button>
+              <br>
+              <br>
+              <button type="button" (click)='socketClose()' class="btn btn-rounded btn-primary">Close Socket</button>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

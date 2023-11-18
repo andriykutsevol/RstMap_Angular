@@ -1,0 +1,148 @@
+<div class="login-register" style="background-image:url(assets/images/background/login-register.jpg);">
+  <div class="login-box card">
+    <div class="card-body">
+
+      <div *ngIf='signed_up' style="font-size: 20px">
+        The email confirmation message has been sended to <b>your email.</b> <br><br>
+        <b>After email confirmation</b> you will be redirected to the login page.
+      </div>
+
+
+
+      <form *ngIf='!signed_up' [formGroup]="signupform" class="form-horizontal form-material" id="loginform">
+
+        <h3 class="box-title m-b-20">Sign Up</h3>
+
+        <div class="form-group" [ngClass]="
+          {'has-danger':
+            (!username.valid && username.touched),
+            'has-success': (username.valid && username.touched)
+          }" >
+
+          <div class="col-xs-12">
+            <input
+              [formControl]="username"
+              class="form-control"
+              required=""
+              placeholder="Email"
+            >
+
+            <label *ngIf="(!username.valid && username.touched)" class="form-control-label" for="error">Please enter a valid Email.</label>
+
+          </div>
+        </div>
+
+
+        <!-- =================================== -->
+
+        <!-- <div class="form-group" [ngClass]="
+          {'has-danger':
+          (!email.valid && email.touched),
+          'has-success': (email.valid && email.touched)
+          }"
+        >
+
+        <div class="col-xs-12">
+          <input
+            [formControl]="email"
+            class="form-control"
+            required=""
+            placeholder="Email"
+          >
+
+        <label *ngIf="(!email.valid && email.touched)" class="form-control-label" for="error">Please enter a valid email.</label>
+
+        </div>
+        </div> -->
+
+
+        <!-- =================================== -->
+
+
+
+
+        <!-- <div class="form-group ">
+          <div class="col-xs-12">
+            <input class="form-control" required="" type="text" placeholder="Email">
+          </div>
+        </div> -->
+
+
+
+        <div class="form-group" [ngClass]="
+          {'has-danger':
+            (
+              !password.valid && password.touched),
+              'has-success': (password.valid && password.touched
+            )
+          }"
+        >
+          <div class="col-xs-12">
+            <input
+              [formControl]="password"
+              class="form-control"
+              required=""
+              type="password"
+              placeholder="Password"
+            >
+            <label *ngIf="(!password.valid && password.touched)" class="form-control-label" for="error">Min 4 symbols</label>
+          </div>
+        </div>
+
+
+
+        <div class="form-group" [ngClass]="
+          {'has-danger':
+            (
+              !repeatPassword.valid && repeatPassword.touched),
+              'has-success': (repeatPassword.valid && repeatPassword.touched
+            )
+          }"
+        >
+          <div class="col-xs-12">
+            <input
+              [formControl]="repeatPassword"
+              class="form-control"
+              required=""
+              type="password"
+              placeholder="Confirm Password"
+            >
+            <span *ngIf="!passwords.valid && (password.touched || repeatPassword.touched)"
+              class="help-block sub-little-text">Passwords don't match.</span>
+          </div>
+        </div>
+
+        <!-- <div class="form-group row">
+          <div class="col-md-12">
+            <div class="checkbox checkbox-success p-t-0">
+              <input id="checkbox-signup" type="checkbox" required="" class="filled-in chk-col-light-blue">
+              <label for="checkbox-signup"> I agree to all <a href="javascript:void(0)">Terms</a></label>
+            </div>
+          </div>
+        </div> -->
+
+        <div class="form-group text-center p-b-20">
+          <div class="col-xs-12">
+            <button (click)="onsignup(signupform.value)" [disabled]="!signupform.valid" class="btn btn-info btn-lg btn-block btn-rounded text-uppercase waves-effect waves-light">
+              Sign Up <i id="signup_spinner" class="fa fa-spinner hidden"></i>
+            </button>
+          </div>
+          <label *ngIf="userexists" class="form-control-label exists_error" for="error">User already registered.</label>
+          <label *ngIf="emailexists" class="form-control-label exists_error" for="error">Email already registered.</label>
+        </div>
+        <div class="form-group m-b-0">
+          <div class="col-sm-12 text-center">
+            Already have an account? <a class="text-info m-l-5" [routerLink]="['/login']"><b>Log In</b></a>
+          </div>
+        </div>
+
+      </form>
+
+
+
+
+
+
+    </div>
+  </div>
+</div>

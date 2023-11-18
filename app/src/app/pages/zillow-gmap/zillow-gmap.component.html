@@ -1,0 +1,100 @@
+<div class="row">
+
+    <div class="col-md-9 zillow_gmap">
+      <!-- <div class="card">
+            <div class="card-body"> -->
+
+      <div id="controls" class="nicebox">
+
+          <div id="legend">
+              <div id="zillow-min">min</div>
+              <div class="color-key"><span id="data-caret">&#x25c6;</span></div>
+              <div id="zillow-max">max</div>
+            </div>
+
+      </div>
+
+      <div id="gmap" #gmap></div>
+
+    </div>
+
+
+    <div class="col-md-3 zillow_gmap_controls">
+
+      <div class='progress_wrap'>
+        <div class="progress">
+          <div class="indeterminate"></div>
+        </div>
+      </div>
+
+      <div class="wrp mat-app-background">
+
+      <ul class="nav nav-tabs customtab" role="tablist">
+
+
+        <li class="nav-item waves-effect waves-dark">
+          <a class="nav-link active" (click)="setup_tab('zillowdatasets')" data-toggle="tab" href="#zillowdatasets" role="tab" aria-expanded="true">
+            <span>
+              <i class="icon-docs"></i>
+            </span>
+          </a>
+        </li>
+
+
+        <li class="nav-item waves-effect waves-dark">
+          <a class="nav-link" (click)="setup_tab('otherdatasets')" data-toggle="tab" href="#otherdatasets" role="tab" aria-expanded="false">
+            <span>
+              <i class="fa fa-circle-o"></i>
+            </span>
+          </a>
+        </li>
+
+        <li class="nav-item waves-effect waves-dark">
+            <a class="nav-link" (click)="setup_tab('properties')" data-toggle="tab" href="#properties" role="tab" aria-expanded="false">
+              <span>
+                <i class="icon-doc"></i>
+              </span>
+            </a>
+        </li>
+
+        <li class="nav-item waves-effect waves-dark">
+          <a class="nav-link" (click)="setup_tab('gmarkers')" data-toggle="tab" href="#gmarkers" role="tab" aria-expanded="false">
+            <span>
+              <i class="mdi mdi-map-marker"></i>
+            </span>
+          </a>
+        </li>
+
+
+      </ul>
+
+      </div>
+
+
+
+    <!-- Tab panes -->
+
+    <div class="tab-content tabcontent-border">
+
+        <div class="tab-pane active" id="zillowdatasets" role="tabpanel" aria-expanded="true">
+          <app-area-based></app-area-based>
+        </div>
+
+        <div class="tab-pane" id="otherdatasets" role="tabpanel" aria-expanded="false">
+          <app-location-based></app-location-based>
+        </div>
+
+        <div class="tab-pane" id="properties" role="tabpanel" aria-expanded="false">
+          <app-dataset-properties></app-dataset-properties>
+        </div>
+
+        <div class="tab-pane" id="gmarkers" role="tabpanel" aria-expanded="false">
+            <app-marks></app-marks>
+          </div>
+
+    </div>
+
+    <!-- ======================== -->
+
+
+  </div>

@@ -1,0 +1,45 @@
+          <div class="some_dataset_controls">
+          <div class="row">
+            <div class="col-lg-7">
+
+              <button type="button" id="otherdata_load_button"
+                class="btn btn-rounded btn-info btn-block waves-effect waves-dark load_dataset"
+                (click)="load_dataset()"
+              > Load </button>
+
+            </div>
+
+            <div class="col-lg-5">
+
+              <button type="button" id="cleardata_load_button"
+                class="btn btn-rounded btn-info btn-block waves-effect waves-dark"
+                (click)="clear_datasets()"
+              > Clear </button>
+
+            </div>
+
+          </div>
+          </div>
+
+
+          <div class="row">
+              <div class="col-lg-12">
+
+                  <div class="message-box">
+                      <div class="message-widget slimscrollable">
+
+
+                        <a  *ngFor='let dataset of datasets["all"]' href="javascript:void(0)"
+                          class="waves-effect" [ngClass]="{'message-active': dataset.isactive}"
+                          (click)= 'toggle_dataset(dataset)'
+                        >
+                          <h5>{{dataset.title}} :: {{dataset.row_count}}</h5>
+                        </a>
+
+
+                      </div>
+                  </div>
+
+              </div>
+
+            </div>

@@ -1,0 +1,22 @@
+
+<div class="modal-header">
+  <h4 class="modal-title">{{modal_title}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+
+<div class="modal-body">
+  <p>{{modal_body}}</p>
+  <p>{{additional_info}}</p>
+</div>
+
+
+<div class="modal-footer">
+  <button *ngIf="show_confirm_button" type="button" class="btn btn-secondary" (click)="confirm()">Confirm</button>
+  <button *ngIf="show_reject_button"  type="button" class="btn btn-secondary" (click)="reject()">Reject</button>
+  <button *ngIf="show_close_button"  type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>
+</div>
+
+

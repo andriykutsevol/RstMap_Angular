@@ -1,0 +1,21 @@
+/* @import "../../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+@import '~angular-ripple-effect/style.css'; */
+
+
+.dataset_wrapper .ui-dropdown{
+  width: 100% !important;
+}
+
+/* Or use ::ng-deep insede the compenent */
+
+::ng-deep .ui-dropdown{
+  width: 100% !important;
+}
+
+
+
+
+::ng-deep html .hidden{
+  display: none;
+}

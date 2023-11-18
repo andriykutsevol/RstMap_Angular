@@ -1,0 +1,27 @@
+.has-danger .form-control {
+    border-color: #fc4b6c;
+    background-image: linear-gradient(#fc4b6c, #fc4b6c), linear-gradient(#d9d9d9, #d9d9d9);
+    border: 0 none;
+    border-radius: 0;
+    box-shadow: none;
+    float: none;
+  }
+
+
+  .has-success .form-control {
+    border-color: #1f8d31;
+    background-image: linear-gradient(#1f8d31, #1f8d31), linear-gradient(#d9d9d9, #d9d9d9);
+    border: 0 none;
+    border-radius: 0;
+    box-shadow: none;
+    float: none;
+  }
+
+
+.exists_error{
+  color: #fc4b6c;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+

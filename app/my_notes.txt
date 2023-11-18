@@ -1,0 +1,28 @@
+
+====================================================================
+app_v1.2_dev/
+====================================================================
+
+To build production version I needed to update to
+     "typescript": "~2.6.1"
+in package.json     
+
+Then warnings
+
+#---------------------
+
+@angular/compiler-cli@5.0.1 requires typescript@'>=2.4.2 <2.5.0' but 2.6.2 was found instead.
+Using this version can result in undefined behaviour and difficult to debug problems.
+
+Please run the following command to install a compatible version of TypeScript.
+
+    npm install typescript@'>=2.4.2 <2.5.0'
+
+To disable this warning run "ng set warnings.typescriptMismatch=false".
+
+#----------------------
+
+But the 
+    npm run-script buildprod
+    npm run-script serveprod
+works now.

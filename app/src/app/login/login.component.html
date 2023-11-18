@@ -1,0 +1,157 @@
+<div class="login-register" style="background-image:url(assets/images/background/login-register.jpg);">
+  <div class="login-box card">
+    <div class="card-body">
+
+
+
+
+
+      <form [formGroup]="loginform" *ngIf="!show_forgot_pwd" class="form-horizontal form-material" id="loginform">
+
+        <h3 class="box-title m-b-20">Log In</h3>
+
+        <div class="form-group" [ngClass]="
+          {'has-danger':
+            (!username.valid && username.touched),
+            'has-success': (username.valid && username.touched)
+          }" >
+
+            <div class="col-xs-12">
+              <input
+                [formControl]="username"
+                class="form-control"
+                required=""
+                placeholder="Email"
+              >
+
+              <label *ngIf="(!username.valid && username.touched)" class="form-control-label" for="error">Please enter a valid email</label>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- <div class="form-group ">
+          <div class="col-xs-12">
+            <input class="form-control" required="" type="text" placeholder="Email">
+          </div>
+        </div> -->
+
+
+
+        <div class="form-group" [ngClass]="
+          {'has-danger':
+            (
+              !password.valid && password.touched),
+              'has-success': (password.valid && password.touched
+            )
+          }"
+        >
+          <div class="col-xs-12">
+            <input
+              [formControl]="password"
+              class="form-control"
+              required=""
+              type="password"
+              placeholder="Password"
+            >
+            <label *ngIf="(!password.valid && password.touched)" class="form-control-label" for="error">Min 4 symbols</label>
+          </div>
+        </div>
+
+
+
+
+        <div class="form-group text-center ">
+          <div class="col-xs-12">
+            <button (click)="onlogin(loginform.value)" [disabled]="!loginform.valid"
+              class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light">
+            Log In
+          </button>
+          </div>
+          <label id="pwdmismatch" *ngIf="pwdmismatch" class="form-control-label pwdmismatch_error" for="error">Bad username or password</label>
+          <!-- <label id="manually_pwdmismatch" class="form-control-label pwdmismatch_error hidden red" for="error">Bad username or password</label> -->
+        </div>
+
+
+      </form>
+
+      <!-- ================================ -->
+
+      <!-- <button class="loginBtn loginBtn--facebook">
+          Login with Facebook
+        </button>
+
+      <button class="loginBtn loginBtn--google">
+        Login with Google
+      </button> -->
+
+      <button id="googleBtn" class="loginBtn loginBtn--google" >Login with Google</button>
+
+
+      <!-- ================================= -->
+
+
+
+      <div class="form-group text-center p-b-20">
+        <a href="javascript:void(0)" (click)='to_recover()' id="to-recover" class="text-dark pull-right"><i class="fa fa-lock m-r-5"></i>{{rec_txt}}</a>
+      </div>
+
+
+        <!-- Forgot pwd form -->
+
+      <form [formGroup]="fpwdform" *ngIf="show_forgot_pwd" class="form-horizontal form-material" id="fpwdform">
+
+        <div class="form-group" [ngClass]="
+          {'has-danger':
+          (!email.valid && email.touched),
+          'has-success': (email.valid && email.touched)
+          }"
+        >
+
+          <div class="col-xs-12">
+            <input
+              [formControl]="email"
+              class="form-control"
+              required=""
+              placeholder="Email to send your credentials."
+            >
+
+            <label *ngIf="(!email.valid && email.touched)" class="form-control-label" for="error">Please enter a valid email.</label>
+          </div>
+        </div>
+
+
+        <div class="form-group text-center p-b-20">
+            <div class="col-xs-12">
+              <button (click)="on_pwd_send(fpwdform.value)" [disabled]="!fpwdform.valid" class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light">Send</button>
+            </div>
+            <label id="pwdsended_msg" class="form-control-label" for="error">{{pwdsended_msg}}</label>
+        </div>
+
+
+
+
+      </form>
+
+
+        <!-- End of Forgot pwd form -->
+
+
+        <div class="form-group m-b-0">
+          <div class="col-sm-12 text-center">
+            Do not have an accout yet? <a class="text-info m-l-5" [routerLink]="['/signup']"><b>Sign Up</b></a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</div>

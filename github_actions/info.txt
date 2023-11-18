@@ -1,0 +1,4 @@
+https://github.com/openshift/dockerexec/blob/master/vendor/src/github.com/docker/docker/docs/sources/articles/dockerfile_best-practices.md
+
+
+

@@ -1,0 +1,193 @@
+<div class="some_dataset_controls">
+
+    <div class="row">
+      <div class="col-lg-7">
+        <!-- [disabled] = "not_capable_to_load" -->
+        <button type="button" id="data_load_button"
+          class="btn btn-rounded btn-info waves-effect waves-dark load_dataset"
+          (click)='load_dataset()'
+        >
+          Load
+        </button>
+      </div>
+
+      <div class="col-lg-5">
+
+        <div class="switch">
+          <label>
+              <input (click)="toggle_dataset()" id="toggle_dataset" type="checkbox" >
+              <span class="lever switch-col-indigo"></span>
+          </label>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12">
+
+        <div class="dataset_wrapper">
+            <p-dropdown  (onChange)='dataset_slider_changed($event)' [options]="active_dataset.dropdown_list" [(ngModel)]="active_dataset.field_slider_value"></p-dropdown>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+
+          <div class="dataset_wrapper">
+              <p-slider (onChange)='dataset_slider_changed($event)' [(ngModel)]="active_dataset.field_slider_value"  [min]="0" [max]="active_dataset.num_fields"></p-slider>
+          </div>
+
+        </div>
+      </div>
+
+
+</div>
+
+
+
+<div class="message-box">
+    <div class="message-widget slimscrollable">
+
+
+      <!-- <a  *ngFor='let dataset of datasets' href="javascript:void(0)"
+        class="waves-effect" [ngClass]="{'message-active': dataset.isactive}"
+        (click)= 'activate_dataset(dataset)'
+      >
+        <h5>{{dataset.title}} :: {{dataset.row_count}}</h5>
+      </a> -->
+
+      <div id="accordionexample" class="accordion" role="tablist" aria-multiselectable="true">
+
+
+        <!-- <div *ngFor='let group_of_ds of generateArray(datasets); let group_i = index ' class="card" >
+          <h5 class="mb-0">
+            <a data-toggle="collapse" data-parent="#accordionexample" [attr.href]="'#acc' + group_i" aria-expanded="true" aria-controls="collapseexaOne">
+                {{group_of_ds[0]['group']}}
+            </a>
+          </h5>
+
+          <div [attr.id]="'acc' + group_i" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+            <a  *ngFor='let dataset of group_of_ds' href="javascript:void(0)"
+              class="waves-effect" [ngClass]="{'message-active': dataset.isactive}"
+              (click)= 'activate_dataset(dataset)'
+              >
+              <h5>{{dataset.title}} :: {{dataset.row_count}}</h5>
+            </a>
+          </div> -->
+
+
+          <div  class="card" >
+              <h5 class="mb-0">
+                <a data-toggle="collapse" data-parent="#accordionexample" [attr.href]="'#acc1'" aria-expanded="true" aria-controls="collapseexaOne">
+                    zillow.com/zip/data
+                </a>
+              </h5>
+
+              <div [attr.id]="'acc1'" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <a  *ngFor='let dataset of datasets["zillow.com/data"]' href="javascript:void(0)"
+                  class="waves-effect" [ngClass]="{'message-active': dataset.isactive}"
+                  (click)= 'activate_dataset(dataset)'
+                  >
+                  <h5>{{dataset.title}} :: {{dataset.row_count}}</h5>
+                </a>
+              </div>
+          </div>
+
+          <div  class="card" >
+              <h5 class="mb-0">
+                <a data-toggle="collapse" data-parent="#accordionexample" [attr.href]="'#acc2'" aria-expanded="true" aria-controls="collapseexaOne">
+                    zillow.com/zip/Other Metrics
+                </a>
+              </h5>
+
+              <div [attr.id]="'acc2'" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <a  *ngFor='let dataset of datasets["Other Metrics"]' href="javascript:void(0)"
+                  class="waves-effect" [ngClass]="{'message-active': dataset.isactive}"
+                  (click)= 'activate_dataset(dataset)'
+                  >
+                  <h5>{{dataset.title}} :: {{dataset.row_count}}</h5>
+                </a>
+              </div>
+          </div>
+
+
+          <div  class="card" >
+              <h5 class="mb-0">
+                <a data-toggle="collapse" data-parent="#accordionexample" [attr.href]="'#acc3'" aria-expanded="true" aria-controls="collapseexaOne">
+                    zillow.com/zip/Rental Indices
+                </a>
+              </h5>
+
+              <div [attr.id]="'acc3'" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <a  *ngFor='let dataset of datasets["Rental Indices"]' href="javascript:void(0)"
+                  class="waves-effect" [ngClass]="{'message-active': dataset.isactive}"
+                  (click)= 'activate_dataset(dataset)'
+                  >
+                  <h5>{{dataset.title}} :: {{dataset.row_count}}</h5>
+                </a>
+              </div>
+          </div>
+
+
+          <div  class="card" >
+            <h5 class="mb-0">
+              <a data-toggle="collapse" data-parent="#accordionexample" [attr.href]="'#acc4'" aria-expanded="true" aria-controls="collapseexaOne">
+                  ZIP Code Database
+              </a>
+            </h5>
+
+            <div [attr.id]="'acc4'" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+              <a  *ngFor='let dataset of datasets["ZIP Code Database"]' href="javascript:void(0)"
+                class="waves-effect" [ngClass]="{'message-active': dataset.isactive}"
+                (click)= 'activate_dataset(dataset)'
+                >
+                <h5>{{dataset.title}} :: {{dataset.row_count}}</h5>
+              </a>
+            </div>
+        </div>
+
+
+          <div  class="card" >
+            <h5 class="mb-0">
+              <a data-toggle="collapse" data-parent="#accordionexample" [attr.href]="'#acc5'" aria-expanded="true" aria-controls="collapseexaOne">
+                  zillow.com/city/
+              </a>
+            </h5>
+
+            <div [attr.id]="'acc5'" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+              <a  *ngFor='let dataset of datasets["zillow_city"]' href="javascript:void(0)"
+                class="waves-effect" [ngClass]="{'message-active': dataset.isactive}"
+                (click)= 'activate_dataset(dataset)'
+                >
+                <h5>{{dataset.title}} :: {{dataset.row_count}}</h5>
+              </a>
+            </div>
+        </div>
+
+
+        <div  class="card" >
+          <h5 class="mb-0">
+            <a data-toggle="collapse" data-parent="#accordionexample" [attr.href]="'#acc6'" aria-expanded="true" aria-controls="collapseexaOne">
+                School Districts
+            </a>
+          </h5>
+
+          <div [attr.id]="'acc6'" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+            <a  *ngFor='let dataset of datasets["school_district"]' href="javascript:void(0)"
+              class="waves-effect" [ngClass]="{'message-active': dataset.isactive}"
+              (click)= 'activate_dataset(dataset)'
+              >
+              <h5>{{dataset.title}} :: {{dataset.row_count}}</h5>
+            </a>
+          </div>
+      </div>
+
+      </div>
+
+
+    </div>
+</div>

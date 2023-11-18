@@ -1,0 +1,194 @@
+<div class="row mt-30 mlr-10p">
+
+  <div class="col-lg-12">
+      <a href="/#/gmap">Back to the Map</a>
+      <hr>
+      <div class="card">
+          <div class="card-body">
+              <h4 class="card-title">Change the password.</h4>
+              <!-- <h6 class="card-subtitle">Add class <code>.table</code></h6> -->
+              <hr>
+              <!-- ================================== -->
+
+              <form [formGroup]="ch_pwd_form" class="form-horizontal form-material" id="ch_pwd_form">
+
+                  <div class="form-group" [ngClass]="
+                    {'has-danger':
+                      (!old_pwd.valid && old_pwd.touched),
+                      'has-success': (old_pwd.valid && old_pwd.touched)
+                    }" >
+
+                      <div class="col-xs-12">
+                        <input
+                          [formControl]="old_pwd"
+                          class="form-control"
+                          required=""
+                          type="password"
+                          placeholder="Your current password"
+                        >
+
+                        <label *ngIf="(!old_pwd.valid && old_pwd.touched)" class="form-control-label" for="error">This field is required</label>
+
+                      </div>
+                  </div>
+
+
+                  <div class="form-group" [ngClass]="
+                    {'has-danger':
+                      (!new_pwd.valid && new_pwd.touched),
+                      'has-success': (new_pwd.valid && new_pwd.touched)
+                    }" >
+
+                      <div class="col-xs-12">
+                        <input
+                          [formControl]="new_pwd"
+                          class="form-control"
+                          required=""
+                          type="password"
+                          placeholder="New Password"
+                        >
+
+                        <label *ngIf="(!new_pwd.valid && new_pwd.touched)" class="form-control-label" for="error">Min 4 symbols</label>
+
+                      </div>
+                  </div>
+
+
+
+                  <div class="form-group" [ngClass]="
+                    {'has-danger':
+                      (!rep_pwd.valid && rep_pwd.touched),
+                      'has-success': (rep_pwd.valid && rep_pwd.touched)
+                    }" >
+
+                      <div class="col-xs-12">
+                        <input
+                          [formControl]="rep_pwd"
+                          class="form-control"
+                          required=""
+                          type="password"
+                          placeholder="Repeat New Password"
+                        >
+
+                        <label *ngIf="(!passwords.valid && (new_pwd.touched || rep_pwd.touched))" class="form-control-label" for="error">Passwords don't match.</label>
+
+                        <br>
+
+                        <button id="chpwd_button" (click)="onchange_pwd(ch_pwd_form.value)" [disabled]="!ch_pwd_form.valid" class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light">Change Password</button>
+                        <label id="user_pwd_change_msg" class="form-control-label" for="error">{{user_pwd_change_msg}}</label>
+
+                      </div>
+                  </div>
+
+
+
+              </form>
+
+              <!-- ================================== -->
+
+
+          </div>
+      </div>
+  </div>
+
+</div>
+
+
+
+<!-- ============================================== -->
+
+
+<!-- <div class="row mlr-10p">
+
+  <div class="col-lg-12">
+      <div class="card">
+          <div class="card-body mx-auto">
+              <h4 class="card-title">Change the email</h4>
+
+              <hr>
+
+
+              <form [formGroup]="ch_email_form" class="form-horizontal form-material" id="ch_email_form">
+
+
+                  <div class="form-group" [ngClass]="
+                    {'has-danger':
+                      (!email_pwd.valid && email_pwd.touched),
+                      'has-success': (email_pwd.valid && email_pwd.touched)
+                    }" >
+
+                      <div class="col-xs-12">
+                        <input
+                          [formControl]="email_pwd"
+                          class="form-control"
+                          required=""
+                          type="password"
+                          placeholder="Your current password"
+                        >
+
+                        <label *ngIf="(!email_pwd.valid && email_pwd.touched)" class="form-control-label" for="error">This field is required</label>
+
+                      </div>
+                  </div>
+
+
+
+
+
+
+                  <div class="form-group" [ngClass]="
+                    {'has-danger':
+                      (!new_email.valid && new_email.touched),
+                      'has-success': (new_email.valid && new_email.touched)
+                    }" >
+
+                      <div class="col-xs-12">
+                        <input
+                          [formControl]="new_email"
+                          class="form-control"
+                          required=""
+                          placeholder="New Email"
+                        >
+
+                        <label *ngIf="(!new_email.valid && new_email.touched)" class="form-control-label" for="error">Please enter a valid email</label>
+
+                      </div>
+                  </div>
+
+
+
+                  <div class="form-group" [ngClass]="
+                    {'has-danger':
+                      (!rep_email.valid && rep_email.touched),
+                      'has-success': (rep_email.valid && rep_email.touched)
+                    }" >
+
+                      <div class="col-xs-12">
+                        <input
+                          [formControl]="rep_email"
+                          class="form-control"
+                          required=""
+                          placeholder="Repeat New Email"
+                        >
+
+                        <label *ngIf="(!emails.valid && (new_email.touched || rep_email.touched))" class="form-control-label" for="error">Emails don't match.</label>
+
+                        <br> <hr>
+
+                        <button (click)="onchange_email(ch_email_form.value)" [disabled]="!ch_email_form.valid" class="btn btn-info btn-lg btn-block btn-rounded text-uppercase waves-effect waves-light">Change Email</button>
+                      </div>
+                  </div>
+
+
+
+              </form>
+
+
+
+
+
+          </div>
+      </div>
+  </div>
+
+</div> -->

@@ -1,0 +1,53 @@
+# Why do we build this?
+# - to have an image which contains all build environment.
+# And in in the container (docker-entrypoint.sh) we build it acutally
+# to make sure that it works.
+
+ARG RELEASE
+FROM ${RELEASE} AS rstmap_angular_release
+ARG RELEASE
+
+SHELL ["/bin/bash", "-cl"]
+
+
+# Теперь нам надо заменить все содержимое каталога /app в образе на ./app из хоста (из dev версии)
+WORKDIR /app
+RUN rm -Rf ./*
+COPY ./app .
+
+#-----------------------------------------
+# We could run in here but we should run in from the 'dev' version and
+# copy resulting 'dist' folder here with the 'app' directory.
+
+# RUN source $NVM_DIR/nvm.sh \
+#     && npm run-script buildprod
+#-----------------------------------------
+
+COPY docker-entrypoint.sh /usr/local/bin/
+
+
+EXPOSE 4200
+
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["release"]
+
+
+#-----------------------------------------
+
+
+# # Use official nginx image as the base image
+# FROM nginx:latest
+
+# SHELL ["/bin/bash", "-cl"]
+
+# # Copy the build output to replace the default nginx contents.
+# COPY --from=rstmap_angular_release /app/dist /usr/share/nginx/html
+
+
+# # Expose port 80
+# EXPOSE 80
+
+# ENTRYPOINT ["/bin/bash"]
+
+
+

@@ -1,0 +1,78 @@
+<div class="some_dataset_controls">
+
+    <div class="row">
+        <div class="col-lg-6">
+          <div class="marker-switch-title">Marker Mode: </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="switch">
+              <label>
+                  <input (click)="click_on_marker_mode_switcher()" id="marker_mode_switcher" type="checkbox" >
+                  <span class="lever switch-col-indigo"></span>
+              </label>
+          </div>
+        </div>
+
+    </div>
+    <hr>
+
+
+      <div class="slimscrollable">
+        <div class="pdleft20">
+
+
+
+            <div class="form-group row">
+                <div class="col-12">
+                <label class="">Title</label>
+                <input class="form-control" type="text" value="" id="marker_title">
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-12">
+                  <label>Description</label>
+                  <textarea id="marker_descr" class="form-control" rows="5"></textarea>
+
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="form-group row">
+              <div class="col-6">
+                  <button id="save_mark_btn" (click)="save_marker()" type="button" class="btn btn-rounded btn-block btn-info">Save</button>
+              </div>
+              <div class="col-6">
+                  <button (click)="delete_marker()" type="button" class="ripple btn btn-rounded btn-block btn-danger">Delete</button>
+              </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Lat</label>
+                <div class="col-10">
+                  <input class="form-control" type="text" value="" id="marker_lat" disabled>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Lng</label>
+                <div class="col-10">
+                  <input class="form-control" type="text" value="" id="marker_lng" disabled>
+                </div>
+            </div>
+
+            <hr>
+
+
+
+
+
+        </div>
+      </div>
+
+
+</div>

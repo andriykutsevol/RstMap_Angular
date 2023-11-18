@@ -1,0 +1,31 @@
+<aside class="left-sidebar">
+    <!-- Sidebar scroll-->
+    <div class="scroll-sidebar">
+
+        <!-- End User profile text-->
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav">
+            <ul id="sidebarnav">
+
+                <li class="nav-small-cap">MENU</li>
+
+                <li [class.active]="showMenu === 'zillow_gmap'" class="waves-effect">
+                  <a  class="waves-effect" routerLink="/zillow-gmap" (click)="addExpandClass('zillow_gmap')" [routerLinkActive]="['router-link-active']"><i class="mdi mdi-gauge waves-effect waves-dark"></i><span class="hide-menu">Zillow GMap</span></a>
+                </li>
+
+                <li [class.active]="showMenu === 'start'" class="waves-effect">
+                    <a routerLink="/starter" (click)="addExpandClass('start')" [routerLinkActive]="['router-link-active']"><i class="mdi mdi-gauge"></i><span class="hide-menu">Test Page</span></a>
+                </li>
+
+
+
+
+            </ul>
+        </nav>
+        <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+    <!-- Bottom points-->
+
+    <!-- End Bottom points-->
+</aside>

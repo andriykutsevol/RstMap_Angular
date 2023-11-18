@@ -8,24 +8,26 @@
 # from the 
 
 
+base_tag="0.0.2"
+from_release="andriykutsevol/ubuntu_1804_node890:${base_tag}"
 
-from_release="ubuntu_1804_node890_2"
+tag="2.0.0"
+img_name="andriykutsevol/rstmap_angular_rel:${tag}"
 
-cur_ver="r2.2"
-names="rstmap_angular_${cur_ver}"
+container_name="rstmap_angular_rel_${tag}"
 
 #===========================================================================
 #===========================================================================
 
 
-(docker stop $(docker ps -q --filter ancestor=${names} ) || true) > /dev/null 2>&1
+(docker stop $(docker ps -q --filter ancestor=${img_name} ) || true) > /dev/null 2>&1
 
-(docker rm ${names} || true) > /dev/null 2>&1
+(docker rm ${container_name} || true) > /dev/null 2>&1
 
-(docker rmi ${names} || true) > /dev/null 2>&1
+(docker rmi ${img_name} || true) > /dev/null 2>&1
 
 
-docker build --build-arg RELEASE=${from_release} --progress=plain -t ${names} . -f ./Dockerfile_rel
+docker build --build-arg RELEASE=${from_release} --progress=plain -t ${img_name} . -f ./Dockerfile_rel
 
 
 echo "================================================="
@@ -34,8 +36,8 @@ echo "================================================="
 # docker container create -p 4201:4200 -it --name ${names} ${names}
 
 # For nginx stage
-docker container create -p 8080:80 -it --name ${names} ${names}
+docker container create -p 8080:80 -it --name ${container_name} ${img_name}
 echo "================================================="
 
 
-docker start -i ${names}
+docker start -i ${container_name}

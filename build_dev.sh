@@ -17,8 +17,11 @@ function volumeExists {
 # It uses /app from the release image (/app copied from the image to /app folder on the host)
 
 
-# !!! When we run this script, all contents of ./app will be prewritten from the release. !!! 
+# !!! When we run this script, all contents of ./app will be prewritten from the release. !!!
+base_tag
 from_release="rstmap_angular_r2.0"
+
+
 names="rstmap_angular_dev"
 
 read -p "! Do you want to replace the contend of the ./app folder to ${release} content? (y/n) " -n 1 -r

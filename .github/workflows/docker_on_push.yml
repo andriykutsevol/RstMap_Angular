@@ -1,3 +1,4 @@
+name: BUILD_DOCKER_ON_PUSH
 on:
   push:
     branches:

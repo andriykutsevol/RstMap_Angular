@@ -1,4 +1,4 @@
-name: BUILD_DOCKER_ON_PUSH
+name: BUILD_DOCKER_RELEASE_ON_PUSH
 on:
   push:
     branches:

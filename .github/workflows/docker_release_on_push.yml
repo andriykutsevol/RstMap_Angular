@@ -1,13 +1,12 @@
 name: BUILD_DOCKER_RELEASE_ON_PUSH
 
 on:
-
-  workflow_dispatch:
-  
   push:
     branches:
     - main
     - release/*
+  workflow_dispatch:
+    
     
 
 jobs:

@@ -35,19 +35,5 @@ CMD ["release"]
 #-----------------------------------------
 
 
-# # Use official nginx image as the base image
-# FROM nginx:latest
-
-# SHELL ["/bin/bash", "-cl"]
-
-# # Copy the build output to replace the default nginx contents.
-# COPY --from=rstmap_angular_release /app/dist /usr/share/nginx/html
-
-
-# # Expose port 80
-# EXPOSE 80
-
-# ENTRYPOINT ["/bin/bash"]
-
 
 

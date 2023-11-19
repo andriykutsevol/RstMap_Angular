@@ -8,6 +8,14 @@
 # from the 
 
 
+if [ -e "./app/dist/" ]; then echo "The 'dist' folder is built. OK" 
+else 
+    echo "./app/dist/ There is no such directory."
+    echo "Run 'npm run-script buildprod' from the '_dev' container first."
+    exit 1
+fi  
+
+
 base_tag="0.0.2"
 from_release="andriykutsevol/ubuntu_1804_node890:${base_tag}"
 

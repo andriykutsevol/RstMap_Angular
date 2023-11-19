@@ -1,4 +1,4 @@
-name: docker_release_on_push
+
 on:
   push:
     branches:

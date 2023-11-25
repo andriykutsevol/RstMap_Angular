@@ -1,10 +1,21 @@
 name: TEST_CONTEXT
 
-on: [workflow_dispatch]
+# on:
+#   push:
+#     branches:
+#     - main
+#     - release/*
+#   workflow_dispatch:
+
+
+on:[workflow_dispatch]
+
+    
 
 jobs:
-  test_job1:
-  steps:
+  build:
     runs-on: ubuntu-latest
-    -name: Step 1
-    run: echo "Step 1" 
+    # needs: [CONDUCTOR_BLOBBERS_01_TESTS]
+    steps:
+      - name: Test step
+        run: echo "Test step"

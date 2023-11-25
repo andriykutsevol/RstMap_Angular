@@ -10,12 +10,50 @@ name: TEST_CONTEXT
 
 on: [workflow_dispatch]
 
-    
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    # needs: [CONDUCTOR_BLOBBERS_01_TESTS]
     steps:
       - name: Test step
         run: echo "Test step"
+
+      - name: Test step2
+        run: echo $GITHUB_ENV 
+
+
+
+
+
+
+
+
+# https://tonylixu.medium.com/gitops-github-actions-workflow-contexts-and-expressions-38a42b8ac424
+
+# In GitHub Actions, a context is a set of pre-defined objects or variables 
+# containing relevant information about the environment, 
+# events, or other data associated with a workflow run.
+
+# You can use contexts to access information about 
+# steps, workflow runs, jobs, and runner environments. 
+# Any time you want to access a context from within a workflow file, 
+# you need to use a syntax similar to 
+#${{ <context> }}. For example:
+
+    # name: Simple Contexts Example
+
+    # on: push
+
+    # jobs:
+    #   print-info:
+    #     runs-on: ubuntu-latest
+    #     steps:
+    #       - name: Set custom environment variable
+    #         run: echo "CUSTOM_VARIABLE=Hello, World!" >> $GITHUB_ENV
+
+    #       - name: Print commit author and custom environment variable
+    #         run: |
+    #           echo "Commit author: ${{ github.actor }}"
+    #           echo "Custom variable: ${{ env.CUSTOM_VARIABLE }}"
+
+

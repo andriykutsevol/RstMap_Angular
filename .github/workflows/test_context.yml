@@ -27,6 +27,12 @@ jobs:
           echo "Custom variable: ${{ env.CUSTOM_VARIABLE }}"
 
 
+      - name: Dump job context
+        env:
+          JOB_CONTEXT: ${{ toJson(github) }}
+        
+        run: echo "$JOB_CONTEXT"
+
 
 
 # https://tonylixu.medium.com/gitops-github-actions-workflow-contexts-and-expressions-38a42b8ac424
@@ -56,5 +62,90 @@ jobs:
     #         run: |
     #           echo "Commit author: ${{ github.actor }}"
     #           echo "Custom variable: ${{ env.CUSTOM_VARIABLE }}"
+
+
+
+# Contexts can be used mostly anywhere in your workflow file. 
+# They are often used with expressions to check for specific conditions.
+
+
+# In this case, the job will only run if the result of the expression is approved:
+
+    # if: github.event_name == 'pull_request_review' && github.event.review.state == 'approved'
+
+
+
+# The syntax to access a context is simple: 
+# you can either use the github[‘event_name’] index syntax or the github.event_name 
+# property dereference syntax.
+
+
+
+
+
+
+
+# https://ecanarys.com/github-action-context-and-its-capabilities/
+# GitHub Action context and its Capabilities
+
+
+
+
+# Contexts basically helps to get the information about 
+# workflow runs, 
+# runner environments, 
+# jobs, and steps. 
+# Contexts, objects, 
+# and properties will vary importantly under different workflow run conditions. 
+# For example, the matrix context is only populated for a matrix job.
+
+
+
+
+# The GitHub context contains information about the workflow run and the event that triggered the run. 
+# GitHub context object contains all the properties. Now we'll look at a GitHub Context sample.
+
+# run: echo "$GITHUB_CONTEXT"
+# - name: Dump job context
+#   env:
+#     JOB_CONTEXT: ${{ toJson(github) }}
+  
+#   run: echo "$JOB_CONTEXT"  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

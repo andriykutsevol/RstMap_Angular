@@ -1,13 +1,5 @@
 name: TEST_CONTEXT
 
-# on:
-#   push:
-#     branches:
-#     - main
-#     - release/*
-#   workflow_dispatch:
-
-
 on: [workflow_dispatch]
 
 jobs:

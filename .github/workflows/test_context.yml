@@ -16,14 +16,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Test step
-        run: echo "Test step"
+        run: run: echo "CUSTOM_VARIABLE=Hello, World!" >> $GITHUB_ENV
 
       - name: Test step2
         run: echo $GITHUB_ENV 
 
-
-
-
+      - name: Print commit author and custom environment variable
+        run: |
+          echo "Commit author: ${{ github.actor }}"
+          echo "Custom variable: ${{ env.CUSTOM_VARIABLE }}"
 
 
 

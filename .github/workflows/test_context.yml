@@ -13,5 +13,6 @@ on: [workflow_dispatch]
 jobs:
   test_job1:
   steps:
+    runs-on: ubuntu-latest
     -name: Step 1
     run: echo "Step 1" 

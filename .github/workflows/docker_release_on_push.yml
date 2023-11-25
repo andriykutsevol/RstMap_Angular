@@ -1,12 +1,15 @@
 name: BUILD_DOCKER_RELEASE_ON_PUSH
 
-on:
-  push:
-    branches:
-    - main
-    - release/*
-  workflow_dispatch:
-    
+# on:
+#   push:
+#     branches:
+#     - main
+#     - release/*
+#   workflow_dispatch:
+
+
+on:[workflow_dispatch]
+
     
 
 jobs:
@@ -21,4 +24,511 @@ jobs:
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}   
+          password: ${{ secrets.DOCKERHUB_TOKEN }}  
+
+      - name: Build image
+        uses: docker/login-action@v3
+
+        
+
+
+#---------------------------------------------
+# https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsuses
+# jobs.<job_id>.steps[*].uses
+#---------------------------------------------
+
+#---
+# Example: Using versioned actions
+#---
+
+# steps:
+#   # Reference a specific commit
+#   - uses: actions/checkout@8f4b7f84864484a7bf31766abe9204da3cbe65b3
+
+#   # Reference the major version of a release
+#   - uses: actions/checkout@v4
+
+#   # Reference a specific version
+#   - uses: actions/checkout@v4.2.0
+
+#   # Reference a branch
+#   - uses: actions/checkout@main
+
+
+#---
+# Example: Using a public action
+# You can specify a branch, ref, or SHA in a public GitHub repository.
+#---
+
+# jobs:
+#   my_first_job:
+#     steps:
+#       - name: My first step
+#         # Uses the default branch of a public repository
+#         uses: actions/heroku@main
+#       - name: My second step
+#         # Uses a specific version tag of a public repository
+#         uses: actions/aws@v2.0.1
+
+
+
+#---
+# Example: Using a public action in a subdirectory
+# A subdirectory in a public GitHub repository at a specific branch, ref, or SHA.
+#---
+
+# jobs:
+#   my_first_job:
+#     steps:
+#       - name: My first step
+#         uses: actions/aws/ec2@main
+
+
+
+#---
+# Example: Using an action in the same repository as the workflow
+#---
+
+# ./path/to/dir
+
+# The path to the directory that contains the action in your workflow's repository. 
+# You must check out your repository before using the action.
+
+# Example repository file structure:
+
+# |-- hello-world (repository)
+# |   |__ .github
+# |       └── workflows
+# |           └── my-first-workflow.yml
+# |       └── actions
+# |           |__ hello-world-action
+# |               └── action.yml
+
+
+
+# Example workflow file:
+
+# jobs:
+#   my_first_job:
+#     runs-on: ubuntu-latest
+#     steps:
+#       # This step checks out a copy of your repository.
+#       - name: My first step - check out repository
+#         uses: actions/checkout@v4
+#       # This step references the directory that contains the action.
+#       - name: Use local hello-world-action
+#         uses: ./.github/actions/hello-world-action
+
+# The path is relative (./) to the default working directory (github.workspace, $GITHUB_WORKSPACE). 
+
+
+
+
+
+
+
+#---------------------------------------------
+# https://www.positioniseverything.net/github-actions-checkout/
+
+
+# GitHub actions checkout is an action that allows you to check out a repository to allow your workflow to access it. 
+# This action checks out a repository’s code to the runner so that you can run commands against it.
+
+#---
+# What Is Github Actions Checkout?
+#---
+
+# It allows you to check out a copy of your repository in a workflow 
+# to allow you to run commands against the codebase.
+
+
+# This is often useful when to running tests or building and deploying the code. 
+# You can even configure the actions/checkout action using input parameters, which allow you to customize its behavior.
+
+
+# For example, you can specify the branch or tag that you want to check out, 
+# or whether you want to include submodules in the checkout or not. 
+
+
+# What’s more, you can use the actions/checkout action in conjunction with other actions in your workflow.
+
+# For instance, you might use it to check out the code, and then use other actions to run tests or build and deploy the code. 
+
+
+# Here is an example of how you might use the GitHub actions/checkout v2 action with some input parameters:
+
+
+
+# – uses: actions/checkout@v2
+#     with:
+#       ref: master
+#       path: src
+#       fetch-depth: 1
+
+
+# This will check out the master branch of your repository 
+# and place the code in the src directory. 
+# It will only fetch the latest commit, rather than the entire history of the branch.
+
+
+# Below are the input parameters that are available for the actions/checkout action:
+
+
+# token: 
+    # A personal access token (PAT) that grants access to the repository. 
+    # This is required if the repository is private, or if you are using an action in a fork of a repository.
+
+
+# ref: 
+    # The name of the branch, tag, or commit that you want to check out. 
+    # If not specified, the default branch (usually master) will be checked out.
+
+
+# path: 
+    # The GitHub actions/checkout path is the directory where the repository should be checked out. 
+    # If not specified, the repository will be checked out in the root directory of the workflow.
+
+
+# persist-credentials: 
+    # If set to true, the personal access token (PAT) will be stored in the Git configuration for the repository, 
+    # so that subsequent actions do not need to provide a token.
+
+
+# fetch-depth: 
+#   The number of commits to fetch when checking out the repository. 
+#   By default, the entire history of the branch is fetched. 
+#   Setting this to a smaller number can reduce the time it takes to check out the code.
+
+
+# lfs: If set to true, Large File Storage (LFS) objects will be fetched when the repository is checked out.
+
+
+# submodules: If GitHub actions/checkout submodules are set to true, 
+#   submodules will be initialized and updated when the repository is checked out.
+
+
+# clean: If set to true, the repository will be cleaned before it is checked out. 
+#   This removes any untracked files and resets any modified files to their latest commit.
+
+
+
+
+
+
+#---
+# How Can You Use Github Actions/Checkout?
+#---
+
+
+
+# – Fetching All the History for Tags and Branches
+  # You can use the actions/checkout action to fetch all history for all tags and branches. 
+  # To accomplish this, you should include the fetch-depth parameter in the action’s configuration and set it to 0. 
+  # This will fetch the entire history of the repository, including all tags and branches.
+
+
+  # – name: Fetch all history
+  # – uses: actions/checkout@v3
+  #   with:
+    #   fetch-depth: 0
+
+
+  # This action will fetch the entire history of the repository, including all tags and branches. 
+  # It will not, however, check out any specific commit or branch.
+
+  # If you also want to check out a specific branch or commit, 
+  # you can include the ref parameter in the action’s configuration 
+  # and specify the branch name or commit hash that you want to check out.
+
+
+#---
+#– Checkout Head^
+#---
+
+
+# To use the actions/checkout action to check out the commit preceding the current HEAD commit (HEAD^), 
+# you can include it as the ref parameter in the action’s configuration.
+
+
+  # – name: Checkout previous commit
+      # uses: actions/checkout@v2
+        # with:
+        # ref: HEAD^
+
+
+      # This action will check out the commit that is before the current HEAD commit, 
+      # and update the HEAD to point to that commit. 
+      # This can be helpful if you want to temporarily switch to a previous commit in order to test or debug something, 
+      # and then switch back to the current commit when you are done.
+
+
+
+
+
+#---
+#– Checkout Another Branch
+#---
+
+
+# When using GitHub actions/checkout branch to check out a different branch, 
+# make sure you include the name of the branch as the ref parameter in the action’s configuration. 
+# Here is an example of how to use actions/checkout to check out a branch named my-branch:
+
+
+    # – name: Checkout my-branch
+    # uses: actions/checkout@v2
+        # with:
+          # ref: my-branch
+
+# This action will check out the specified branch, 
+# and update the HEAD to point to the latest commit on that branch. 
+# This is an example of how to use git checkout using the branch as a reference.
+
+
+    # – name: Checkout specific tag
+    # uses: actions/checkout@v2
+        # with:
+          # ref: abcde
+
+
+
+#---
+# – Checkout Several Repositories (Side by Side)
+#---
+
+  # To be in a position to use the actions/checkout action to check out multiple repositories side by side, 
+  # you need to define multiple actions/checkout steps in your workflow, 
+  # each with its own repository and ref parameter.
+
+
+  # Below is an example that uses GitHub actions/checkout two repositories repo-1 and repo-2, side by side:
+
+
+
+
+    # steps:
+
+      # – name: Checkout repo-1
+        # uses: actions/checkout@v2
+          # with:
+            # repository: repo-1
+            # ref: master
+
+      # – name: Checkout repo-2
+        # uses: actions/checkout@v2
+          # with:
+            # repository: repo-2
+            # ref: master
+
+
+        # This example is checking out the master branch of both repo-1 and repo-2 
+        # and placing them in the same working directory, side by side.
+        # It is also possible to specify a 
+          # different branch or 
+          # commit hash for each repository
+            # if you so wish.
+
+
+
+#---
+# – Checkout Multiple Private Repositories
+#---
+
+
+# When using the GitHub actions/checkout private repo to check out multiple private repositories, 
+# you have to provide a personal access token (PAT) with the appropriate permissions for each repository. 
+# You can do this by specifying the token parameter in the action’s configuration.
+
+
+# Below is a detailed example of how to use actions/checkout to check out two private repositories, 
+# repo-1 and repo-2, using a personal access token:
+
+
+
+# steps:
+#   – name: Checkout repo-1
+#     uses: actions/checkout@v2
+#     with:
+#       repository: repo-1
+#       ref: master
+#       token: ${{ secrets.REPO_1_PAT }}
+
+#   – name: Checkout repo-2
+#     uses: actions/checkout@v2
+#     with:
+#       repository: repo-2
+#       ref: master
+#       token: ${{ secrets.REPO_2_PAT }}
+
+
+
+
+
+#---
+# – Check Out Pull Request Head Commit in Place of Merge Commit
+#---
+
+
+# To use the actions/checkout action to check out the HEAD commit of pull requests, 
+# rather than the merge commits, you will need to use the GitHub REST API to retrieve 
+# the commit hash of the HEAD commit and pass it to the actions/checkout action.
+
+
+# Here is an example of how to use the GitHub REST API and the actions/checkout action 
+# to check out the HEAD commit of a pull request:
+
+# steps id
+# https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsid
+
+# A unique identifier for the step. You can use the id to reference the step in contexts. 
+# For more information, see "Contexts."
+
+    # Contexts are a way to access information about workflow runs, variables, runner environments, jobs, and steps. 
+    # Each context is an object that contains properties, which can be strings or other objects
+
+
+
+
+
+
+# steps:
+# – name: Get pull request details
+# id: pr
+# uses: actions/toolkit/v1/actions/context#pull-request
+
+# – name: Get pull request HEAD commit
+
+# id: head_commit
+
+# run: |
+
+# curl -H “Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}” -X GET “https://api.github.com/repos/${{ github.repository }}/pulls/${{ steps.pr.outputs.number }}/commits” \
+
+# | jq ‘.[0] | .sha’ \
+
+# | tr -d ‘”‘ > commit_hash.txt
+
+# – name: Checkout pull request HEAD commit
+
+# uses: actions/checkout@v2
+
+# with:
+
+# ref: ${{ steps.head_commit.outputs.commit_hash }}
+
+
+
+# This example uses the actions/toolkit/v1/actions/context#pull-request action to retrieve the details of the pull request, 
+# and then uses the curl command to make a GET request to the
+# /repos/{OWNER}/{REPO}/pulls/{PULL_NUMBER}/commits endpoint of the GitHub REST API.
+
+
+
+
+
+
+
+#---------------------------------------------
+# https://docs.github.com/en/actions/using-jobs/running-jobs-in-a-container
+#---------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#---------------------------------------------
+
+
+
+
+#---------------------------------------------
+# GITHUB_WORKSPACE and github.workspace are different when running in container
+#---------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

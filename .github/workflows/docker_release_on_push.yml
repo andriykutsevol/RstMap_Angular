@@ -8,7 +8,7 @@ name: BUILD_DOCKER_RELEASE_ON_PUSH
 #   workflow_dispatch:
 
 
-on:[workflow_dispatch]
+on: [workflow_dispatch]
 
     
 

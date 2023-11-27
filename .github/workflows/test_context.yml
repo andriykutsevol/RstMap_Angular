@@ -48,6 +48,14 @@ jobs:
           echo "my_var=$my_var" >> $GITHUB_OUTPUT 
 
 
+  my_second_job:
+    runs-on: ubuntu-latest
+    needs: my_job
+    steps:
+      - run: echo my_var [${{needs.my_job.outputs.my_var}}]
+
+
+
 
 
 # echo 'my_param=my_value' >> $GITHUB_OUTPUT

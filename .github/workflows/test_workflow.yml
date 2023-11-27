@@ -1,3 +1,5 @@
+name: TEST_FORKFLOW
+
 on:
   workflow_call:
     # Map the workflow outputs to job outputs

@@ -62,7 +62,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Call other workflow"
-        run: ${{github.repository}}/.github/workflows/my_workflow.yml@main
+        run: ${{github.repository}}/.github/workflows/test_workflow.yml@main
 
   # job2:
   #   runs-on: ubuntu-latest

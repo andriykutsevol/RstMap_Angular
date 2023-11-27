@@ -62,7 +62,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Call other workflow"
-        run: andriykutsevol/RstMap_Angular/.github/workflows/test_workflow.yml@main
+        run: andriykutsevol/RstMap_Angular/.github/workflows/test_workflow.yml
 
   # job2:
   #   runs-on: ubuntu-latest

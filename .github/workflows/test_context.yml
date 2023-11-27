@@ -58,7 +58,7 @@ jobs:
           echo ${{github.repository_owner}}
 
   call-workflow:    
-    uses: ./.github/workflows/test_workflow.yml@main
+    uses: andriykutsevol/RstMap_Angular/.github/workflows/test_workflow.yml@main
 
   # job1:
   #   runs-on: ubuntu-latest

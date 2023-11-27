@@ -59,7 +59,7 @@ jobs:
 
   call-workflow:
     name: "Call other workflow"    
-    uses: andriykutsevol/RstMap_Angular/.github/workflows/test_workflow.yml@main
+    uses: ${{github.repository}}/.github/workflows/test_workflow.yml@main
 
   use-workflow:
     runs-on: ubuntu-latest

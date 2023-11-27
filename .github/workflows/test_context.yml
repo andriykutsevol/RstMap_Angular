@@ -57,12 +57,14 @@ jobs:
           echo ${{github.repository}}
           echo ${{github.repository_owner}}
 
+  call-workflow:    
+    uses: ./.github/workflows/test_workflow.yml@main
 
-  job1:
-    runs-on: ubuntu-latest
-    steps:
-      - name: "Call other workflow"
-        uses: ./.github/workflows/test_workflow.yml@main
+  # job1:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: "Call other workflow"
+  #       uses: ./.github/workflows/test_workflow.yml@main
 
 
 

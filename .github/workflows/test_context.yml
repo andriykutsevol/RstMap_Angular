@@ -34,6 +34,373 @@ jobs:
         run: echo "$JOB_CONTEXT"
 
 
+  my_job:
+    runs-on: ubuntu-latest
+    outputs:
+        my_var: ${{steps.my_step.outputs.my_var}}
+
+    steps:
+      - name: "Example output creation"
+        id: "my_step"    
+        run: |
+          my_var="Hello World"
+          echo "Output [$my_var]"
+          echo "my_var=$my_var" >> $GITHUB_OUTPUT 
+
+
+
+
+# echo 'my_param=my_value' >> $GITHUB_OUTPUT
+#     steps.<step-id>.outputs.my_param
+
+
+# echo 'my_env_var=my_value' >> $GITHUB_ENV
+#     ($my_env_var)
+
+
+# So when should we use one over the other, are there any risks related to one or the other ?
+
+
+            # In GitHub Actions, $GITHUB_ENV is an environment variable that allows 
+              # you to set environment variables 
+                # for SUBSEQUENT STEPS in the SAME JOB.
+
+            # It's a special syntax provided by GitHub Actions to facilitate the sharing of information 
+            # between steps.
+
+
+            # Environment variables set via GITHUB_ENV don't carry over to other jobs.
+
+
+            # Here's an example of how you might use $GITHUB_ENV to set an environment variable:
+
+            # name: Example Workflow
+
+            # on: [push]
+
+            # jobs:
+            #   example-job:
+            #     runs-on: ubuntu-latest
+
+            #     steps:
+            #       - name: Set Environment Variable
+            #         run: echo "MY_VARIABLE=hello" >> $GITHUB_ENV
+
+            #       - name: Use Environment Variable
+            #         run: echo "The value of MY_VARIABLE is $MY_VARIABLE"
+
+
+
+
+
+#---------------------------------------------------------------------------
+# Github actions and output variables
+# https://tech.europace.de/post/github-actions-output-variables-how-to/
+#---------------------------------------------------------------------------
+
+
+# Get output values between steps
+# Syntax define step output: echo "<VariableName>=my variable value" >> $GITHUB_OUTPUT.
+
+
+# - name: "Example output creation"
+#   id: "my_step"
+#   run: |
+#     my_var="Hello World"
+#     echo "Output [$my_var]"
+#     echo "my_var=$my_var" >> $GITHUB_OUTPUT  
+
+
+# Get output values between steps
+# This is pretty simple just call
+
+
+# - name: "Example output call between steps"
+#   run: |
+#         echo "Output [${{steps.my_step.outputs.my_var}}]"
+
+
+
+#---
+# Get output values between jobs
+#---
+
+
+  # Now the outputs needs to be defined also on the job level.
+    # Plus the jobs needs to be connected by adding needs: my_job
+
+
+# Syntax define job output: ${{steps.<StepId>.outputs.<VariableName>}}
+# Syntax receive job output: ${{needs.<JobId>.outputs.<VariableName>}}
+
+
+    # jobs:
+    #   my_job:
+    #     outputs:
+    #       # Map the step outputs to job outputs !!!!!!!!!!!!!!!!
+    #       my_var: ${{steps.my_step.outputs.my_var}}
+    #     steps:
+    #       - name: "Example output creation"
+    #         id: "my_step"
+    #         run: |
+    #           my_var="Hello World"
+    #           echo "Output [$my_var]"
+    #           echo "my_var=$my_var" >> $GITHUB_OUTPUT          
+    #   my_second_job:
+    #     needs: my_job
+    #     steps:
+    #       - run: echo my_var [${{needs.my_job.outputs.my_var}}]
+
+
+
+#---
+# Get output variables between workflows
+# Yes this is another context….
+#---
+
+
+# Syntax define job output: ${{steps.<StepId>.outputs.<VariableName>}}
+# Syntax define workflow output: ${{jobs.<JobId>.outputs.<VariableName> }}
+# Syntax receive job output: ${{needs.<JobId>.outputs.<VariableName>}}
+
+
+    ########## WORKFLOW 1 ##########
+
+    # on:
+    #   workflow_dispatch:
+
+    # jobs:
+    #   job1:
+    #     name: "Call other workflow"
+    #     uses: MY_OWNER/MY_REPO/.github/workflows/my_workflow.yml@main
+    #   job2:
+    #     needs: job1
+    #     steps:
+    #       - name: "Print my_var"
+    #         run: echo my_var [${{needs.job1.outputs.my_var}}]
+
+    # ########## WORKFLOW 2 ##########
+
+    # on:
+    #   workflow_call:
+    #     # Map the workflow outputs to job outputs
+    #     outputs:
+    #       my_var:
+    #         description: "The first output string"
+    #         value: ${{jobs.my_job.outputs.my_var}}
+    # jobs:
+    #   my_job:
+    #     # Map the job outputs to step outputs
+    #     outputs:
+    #       my_var: ${{steps.my_step.outputs.my_var}}
+    #     steps:
+    #       - name: "Example output creation"
+    #         id: "my_step"
+    #         run: |
+    #           my_var="Hello World"
+    #           echo "Output [$my_var]"
+    #           echo "my_var=$my_var" >> $GITHUB_OUTPUT          
+    #   my_second_job:
+    #     needs: my_job
+    #     steps:
+    #       - run: echo my_var [${{needs.my_job.outputs.my_var}}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#---
+# step output
+#---
+
+# Output variables are like return values of a step which can be used in all down streams like jobs, , 
+# reusable workflows and more.
+
+
+#https://dev.to/cicirello/how-to-patch-the-deprecated-set-output-in-github-workflows-and-in-container-actions-9co
+# Old Way
+
+
+  #  - name: Set output
+  #     id: stepid
+  #     run: echo "::set-output name={name}::{value}"
+
+    # - name: Set output
+    #   id: stepid
+    #   run: echo "::set-output name=count::5"
+
+
+    # Later steps of the workflow can then access the value of the output, 
+    # provided the step has an id as above, with the following:
+
+
+    #  - name: Use prior output
+    #       run: echo "The count was ${{ steps.stepid.outputs.count }}"
+
+
+
+# New Way
+
+  #  - name: Set output
+  #       id: stepid
+  #       run: echo "count=5" >> $GITHUB_OUTPUT
+
+
+  # Later steps access it in the same way as before with:
+
+    #     - name: Use prior output
+    #       run: echo "The count was ${{ steps.stepid.outputs.count }}"
+
+
+
+
+
+
+
+
+
+
+# https://github.com/orgs/community/discussions/55294
+# Difference between environment variable and output parameters #55294
+
+
+
+# echo 'my_param=my_value' >> $GITHUB_OUTPUT
+
+  # But the syntax to use an output parameter in a later step is quite long
+
+  # steps.<step-id>.outputs.my_param
+
+
+# echo 'my_env_var=my_value' >> $GITHUB_ENV
+
+  # And it is quite easy to use in later steps (
+      # $my_env_var
+  # ).
+
+# So when should we use one over the other, are there any risks related to one or the other ?
+
+# It looks like the output parameters needs to be used when one wish to set a job output parameters.
+
+
+# Side question, I use the following syntax to output parameters and env variables 
+# which I find nice to use for inspecting values:
+
+  # echo 'my_param=my_value' | tee $GITHUB_OUTPUT
+  # echo 'my_env_var=my_value' | tee $GITHUB_ENV
+
+# Is it safe or a bad practice ? (I'm not storing secrets in params or env var).
+
+#-------------
+
+# In most cases: 
+#   Use an environment variable if you want the value to be available to all processes in following steps of the same job. 
+#   Environment variables set via GITHUB_ENV don't carry over to other jobs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#---
+# jobs output
+#---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # https://tonylixu.medium.com/gitops-github-actions-workflow-contexts-and-expressions-38a42b8ac424
 

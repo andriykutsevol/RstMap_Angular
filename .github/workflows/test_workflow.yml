@@ -1,5 +1,11 @@
 on:
   workflow_call:
+    inputs:
+      chain_branch:
+        type: string
+        description: 'Input branch for 0chain repo'
+        default: ''
+        required: false  
     # Map the workflow outputs to job outputs
     outputs:
       my_var:

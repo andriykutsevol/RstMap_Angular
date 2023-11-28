@@ -60,6 +60,8 @@ jobs:
   call-workflow:
     name: "Call other workflow"    
     uses: ${{github.repository}}/.github/workflows/test_workflow.yml@main
+    with:
+      chain_branch: ${{ github.event.inputs.branch }}
 
   use-workflow:
     runs-on: ubuntu-latest
@@ -67,6 +69,44 @@ jobs:
     steps:
       - name: "Print my var"
         run: echo my_var [${{needs.call-workflow.outputs.my_var}}]
+
+        # Supported keywords for jobs that call a reusable workflow
+        # https://docs.github.com/en/actions/using-workflows/reusing-workflows
+
+
+        # jobs.<job_id>.name
+
+        # jobs.<job_id>.uses
+        
+        # jobs.<job_id>.with
+        
+        # jobs.<job_id>.with.<input_id>
+        
+        # jobs.<job_id>.secrets
+        
+        # jobs.<job_id>.secrets.<secret_id>
+        
+        # jobs.<job_id>.secrets.inherit
+        
+        # jobs.<job_id>.strategy
+        
+        # jobs.<job_id>.needs
+        
+        # jobs.<job_id>.if
+        
+        # jobs.<job_id>.concurrency
+        
+        # jobs.<job_id>.permissions
+
+        # https://github.com/orgs/community/discussions/26671
+        # Passing Environment Variables to Reusable Workflow #26671
+
+
+
+
+
+
+
 
 
 

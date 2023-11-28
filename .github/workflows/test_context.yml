@@ -58,8 +58,9 @@ jobs:
           echo ${{github.repository_owner}}
 
   call-workflow:
-    name: "Call other workflow"    
-    uses: ${{github.repository}}/.github/workflows/test_workflow.yml@main
+    name: "Call other workflow"   
+    # references to workflows must be prefixed with format 'owner/repository/' or './' for local workflows 
+    uses: andriykutsevol/RstMap_Angular/.github/workflows/test_workflow.yml@main
     with:
       chain_branch: ${{ github.event.inputs.branch }}
 

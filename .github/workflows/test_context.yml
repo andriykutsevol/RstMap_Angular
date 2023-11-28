@@ -58,7 +58,7 @@ jobs:
           echo ${{github.repository_owner}}
 
   call-workflow_job:
-    name: "Call other workflow"   
+    # name: "Call other workflow"   
     # references to workflows must be prefixed with format 'owner/repository/' or './' for local workflows 
     uses: andriykutsevol/RstMap_Angular/.github/workflows/test_workflow.yml@main
     with:

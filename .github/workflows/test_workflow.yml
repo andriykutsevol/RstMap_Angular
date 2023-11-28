@@ -20,13 +20,13 @@ jobs:
     outputs:
       my_var: ${{steps.my_step.outputs.my_var}}
     steps:
-      - name: "Example output creation2"
+      - name: "Example output creation"
         id: "my_step"
         run: |
           my_var="Hello World"
           echo "Output [$my_var]"
           echo "my_var=$my_var" >> $GITHUB_OUTPUT 
-      - name: "Example output creation"
+      - name: "Example input value"
         id: "my_step2"
         run: |
           CHAIN_BRANCH="${{ inputs.chain_branch }}"

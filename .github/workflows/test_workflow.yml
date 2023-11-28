@@ -4,7 +4,7 @@ on:
       chain_branch:
         type: string
         description: 'Input branch for 0chain repo'
-        default: ''
+        default: 'default_value'
         required: false  
     # Map the workflow outputs to job outputs
     outputs:
@@ -20,7 +20,7 @@ jobs:
     outputs:
       my_var: ${{steps.my_step.outputs.my_var}}
     steps:
-      - name: "Example output creation"
+      - name: "Example output creation2"
         id: "my_step"
         run: |
           my_var="Hello World"

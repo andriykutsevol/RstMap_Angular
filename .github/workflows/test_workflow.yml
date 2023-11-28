@@ -25,7 +25,9 @@ jobs:
         run: |
           my_var="Hello World"
           echo "Output [$my_var]"
-          echo "my_var=$my_var" >> $GITHUB_OUTPUT          
+          echo "my_var=$my_var" >> $GITHUB_OUTPUT 
+          CHAIN_BRANCH="${{ inputs.chain_branch }}"
+          echo  ${CHAIN_BRANCH}       
   my_second_job:
     runs-on: ubuntu-latest
     needs: my_job

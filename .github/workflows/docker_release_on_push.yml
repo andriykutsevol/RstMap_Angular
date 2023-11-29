@@ -8,7 +8,19 @@ name: BUILD_DOCKER_RELEASE_ON_PUSH
 #   workflow_dispatch:
 
 
-on: [workflow_dispatch]
+on:
+  workflow_dispatch:
+    inputs:
+      from_release:
+        type: string
+        description: 'Points to ubuntu_1804_node890:${base_tag} release'
+        default: "andriykutsevol/ubuntu_1804_node890:0.0.2"
+      img_name:
+          type: string
+          description: 'Output image name'
+          default: "rstmap_angular_rel_2.0.0"
+          required: true 
+
 
     
 
@@ -16,6 +28,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     # needs: [CONDUCTOR_BLOBBERS_01_TESTS]
+
     steps:
       - name: Test step
         run: echo "Test step"
@@ -28,7 +41,7 @@ jobs:
 
       - name: Build image
         uses: docker/login-action@v3
-
+        run: docker build --build-arg RELEASE=${{ inputs.from_release }} --progress=plain -t ${img_name} . -f ./Dockerfile_rel
         
 
 

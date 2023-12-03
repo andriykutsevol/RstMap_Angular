@@ -3,17 +3,22 @@
 
 # It is a self contained image (/app folder inside of the image)
 
-# Before run this script make shure that you built production "dist" directory by:
-# npm run-script buildprod 
-# from the 
 
+# #--------------------------------------
+# # It is for the local build
 
-if [ -e "./app/dist/" ]; then echo "The 'dist' folder is built. OK" 
-else 
-    echo "./app/dist/ There is no such directory."
-    echo "Run 'npm run-script buildprod' from the '_dev' container first."
-    exit 1
-fi  
+# # Before run this script make shure that you built production "dist" directory by:
+# # npm run-script buildprod 
+# # from the 
+
+# if [ -e "./app/dist/" ]; then echo "The 'dist' folder is built. OK" 
+# else 
+#     echo "./app/dist/ There is no such directory."
+#     echo "Run 'npm run-script buildprod' from the '_dev' container first."
+#     exit 1
+# fi  
+
+# #--------------------------------------
 
 
 base_tag="0.0.2"

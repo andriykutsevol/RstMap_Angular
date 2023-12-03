@@ -4,7 +4,7 @@
 # to make sure that it works.
 
 ARG RELEASE
-FROM ${RELEASE} AS rstmap_angular_release
+FROM ${RELEASE} AS from_node_v_rel
 ARG RELEASE
 
 #SHELL ["/bin/bash", "-cl"]
@@ -20,7 +20,8 @@ ARG RELEASE
 # We could run in here but we should run in from the 'dev' version and
 # copy resulting 'dist' folder here with the 'app' directory.
 
-RUN npm install
+RUN source $NVM_DIR/nvm.sh \
+    && npm install
 
 RUN source $NVM_DIR/nvm.sh \
     && npm run-script buildprod

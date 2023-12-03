@@ -4,7 +4,7 @@
 # to make sure that it works.
 
 ARG RELEASE
-FROM ${RELEASE} AS from_node_v_rel
+FROM ${RELEASE} AS previous_release
 ARG RELEASE
 
 #SHELL ["/bin/bash", "-cl"]
@@ -32,8 +32,8 @@ RUN source $NVM_DIR/nvm.sh \
 
 RUN ls
 
-# RUN source $NVM_DIR/nvm.sh \
-#     && npm run-script buildprod
+RUN source $NVM_DIR/nvm.sh \
+    && npm run-script buildprod
 #-----------------------------------------
 
 COPY docker-entrypoint.sh /usr/local/bin/

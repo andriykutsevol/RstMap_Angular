@@ -11,14 +11,14 @@ name: BUILD_DOCKER_RELEASE_ON_PUSH
 on:
   workflow_dispatch:
     inputs:
-      node_v_tag:
+      prev_tag:
         type: string
         description: "base_tag"
         default: "0.0.2"
         required: true
-      from_node_v_rel:
+      prev_rel:
         type: string
-        description: 'Points to ubuntu_1804_node890 release'
+        description: 'prev_rel'
         default: "andriykutsevol/ubuntu_1804_node890"
         required: true
       rel_tag:
@@ -67,7 +67,7 @@ jobs:
         run: |
           pwd
           ls
-          docker build --build-arg RELEASE=${{ inputs.from_node_v_rel }}:${{inputs.node_v_tag}} --progress=plain -t ${{inputs.rel_img_name}}.${{inputs.rel_tag}}  . -f ./Dockerfile_rel
+          docker build --build-arg RELEASE=${{ inputs.prev_rel }}:${{inputs.prev_tag}} --progress=plain -t ${{inputs.rel_img_name}}.${{inputs.rel_tag}}  . -f ./Dockerfile_rel
           docker push ${{inputs.rel_img_name}}.${{inputs.rel_tag}}
       
       # - name: Build Production nginx Image

@@ -15,11 +15,16 @@ on:
         type: string
         description: 'Points to ubuntu_1804_node890:${base_tag} release'
         default: "andriykutsevol/ubuntu_1804_node890:0.0.2"
+        required: true
       img_name:
           type: string
           description: 'Output image name'
           default: "rstmap_angular_rel_2.0.0"
           required: true 
+
+
+env:
+  AWS_REGION: "us-east-1"
 
 
     
@@ -43,7 +48,15 @@ jobs:
 
       - name: Build image
         run: docker build --build-arg RELEASE=${{ inputs.from_release }} --progress=plain -t ${{inputs.img_name}} . -f ./Dockerfile_rel
-        
+   
+  deploy_to_ecs:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: deploy
+        run: echo "Deploy step"
+
+
 
 
 #---------------------------------------------
@@ -454,7 +467,11 @@ jobs:
 # A unique identifier for the step. You can use the id to reference the step in contexts. 
 # For more information, see "Contexts."
 
-    # Contexts are a way to access information about workflow runs, variables, runner environments, jobs, and steps. 
+    # Contexts are a way to access information about 
+      # workflow runs, 
+      # variables, 
+      # runner environments, 
+      # jobs, and steps. 
     # Each context is an object that contains properties, which can be strings or other objects
 
 

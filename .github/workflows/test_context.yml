@@ -583,6 +583,25 @@ jobs:
 
 
 
+#---
+# env
+#---
+
+
+
+
+
+
+
+
+# workflow envs - can be accessed by all resources in the workflow except services
+  
+# job envs - can be accessed by all resources under job except services
+
+# step envs - can be accessed by any resource within the step
+
+
+
 
 
 

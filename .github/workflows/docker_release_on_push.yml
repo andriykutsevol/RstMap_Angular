@@ -29,12 +29,12 @@ on:
       rel_img_name:
         type: string
         description: 'rel_img_name'
-        default: "rstmap_angular_rel"
+        default: "andriykutsevol/rstmap_angular_rel"
         required: true
       nginx_img_name:
         type: string
         description: 'nginx_img_name'
-        default: "rstmap_angular_nginx"
+        default: "andriykutsevol/rstmap_angular_nginx"
         required: true
 
 

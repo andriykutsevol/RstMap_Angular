@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
 import { Observable } from 'rxjs/Observable';
 import * as Rx from 'rxjs/Rx';
-import { AppConfig } from '../../app.config';
+import { AppConfig } from '../app.config';
 
 
 import {NgbdModalBasic} from "../pages/component/modal/modal.component";

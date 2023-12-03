@@ -9,7 +9,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './shared/guard/auth.guard';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AppConfig } from '../app.config';
+import { AppConfig } from './app.config';
 import { WebsocketServiceService } from './services/websocket-service.service';
 import { RestapiService } from './services/restapi.service';
 

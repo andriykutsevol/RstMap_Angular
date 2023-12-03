@@ -19,8 +19,10 @@ COPY ./app .
 # We could run in here but we should run in from the 'dev' version and
 # copy resulting 'dist' folder here with the 'app' directory.
 
-# RUN source $NVM_DIR/nvm.sh \
-#     && npm run-script buildprod
+RUN npm install
+
+RUN source $NVM_DIR/nvm.sh \
+    && npm run-script buildprod
 #-----------------------------------------
 
 COPY docker-entrypoint.sh /usr/local/bin/

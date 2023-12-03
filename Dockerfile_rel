@@ -22,6 +22,8 @@ ARG RELEASE
 
 WORKDIR /app
 
+RUN pwd
+
 RUN source $NVM_DIR/nvm.sh \
     && npm install
 

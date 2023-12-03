@@ -65,7 +65,8 @@ jobs:
 
       - name: Build Release Image
         run: |
-          ./build_rel.sh
+          pwd
+          ls
 
 
         # run: |

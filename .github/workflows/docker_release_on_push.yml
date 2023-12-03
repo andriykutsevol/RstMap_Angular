@@ -65,7 +65,7 @@ jobs:
 
       - name: Build Release Image
         run: |
-          docker build --build-arg RELEASE=${{ inputs.from_node_v_rel }}:${{inputs.rel_tag}} --progress=plain -t ${{inputs.rel_img_name}}.${{inputs.rel_tag}}  . -f ./Dockerfile_rel
+          docker build --build-arg RELEASE=${{ inputs.from_node_v_rel }}:${{inputs.node_v_tag}} --progress=plain -t ${{inputs.rel_img_name}}.${{inputs.rel_tag}}  . -f ./Dockerfile_rel
           docker push ${{inputs.rel_img_name}}.${{inputs.rel_tag}}
    
   deploy_to_ecs:

@@ -20,6 +20,8 @@ ARG RELEASE
 # We could run in here but we should run in from the 'dev' version and
 # copy resulting 'dist' folder here with the 'app' directory.
 
+WORKDIR /app
+
 RUN source $NVM_DIR/nvm.sh \
     && npm install
 

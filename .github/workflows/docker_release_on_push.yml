@@ -44,7 +44,7 @@ env:
   AWS_REGION: "us-east-1"
 
 
-    
+
 
 jobs:
   build:
@@ -64,9 +64,12 @@ jobs:
       - uses: actions/checkout@v3    
 
       - name: Build Release Image
-        run: |
-          docker build --build-arg RELEASE=${{ inputs.from_node_v_rel }}:${{inputs.node_v_tag}} --progress=plain -t ${{inputs.rel_img_name}}.${{inputs.rel_tag}}  . -f ./Dockerfile_rel
-          docker push ${{inputs.rel_img_name}}.${{inputs.rel_tag}}
+        run: ls
+
+
+        # run: |
+        #   docker build --build-arg RELEASE=${{ inputs.from_node_v_rel }}:${{inputs.node_v_tag}} --progress=plain -t ${{inputs.rel_img_name}}.${{inputs.rel_tag}}  . -f ./Dockerfile_rel
+        #   docker push ${{inputs.rel_img_name}}.${{inputs.rel_tag}}
       
       # - name: Build Production nginx Image
       #   run: |

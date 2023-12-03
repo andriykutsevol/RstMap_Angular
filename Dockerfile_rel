@@ -12,17 +12,16 @@ ARG RELEASE
 
 # Теперь нам надо заменить все содержимое каталога /app в образе на ./app из хоста (из dev версии) (Это если мы собираем локально
 # а если на github actions то мы используем actions/checkout@v3 )
-# WORKDIR /app
-# RUN rm -Rf ./*
-# COPY ./app .
+WORKDIR /app
+RUN rm -Rf ./*
+COPY ./app .
 
 #-----------------------------------------
 # We could run in here but we should run in from the 'dev' version and
 # copy resulting 'dist' folder here with the 'app' directory.
 
-WORKDIR /app
-
 RUN pwd
+RUN ls
 
 RUN source $NVM_DIR/nvm.sh \
     && npm install

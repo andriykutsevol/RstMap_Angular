@@ -13,17 +13,34 @@ on:
     inputs:
       node_v_tag:
         type: string
-        description: 'Points to ubuntu_1804_node890:${base_tag} release'
-        default: "andriykutsevol/ubuntu_1804_node890:0.0.2"
+        description: "base_tag"
+        default: "0.0.2"
         required: true
-      img_name:
-          type: string
-          description: 'Output image name'
-          default: "rstmap_angular_rel_2.0.0"
-          required: true 
+      from_node_v_rel:
+        type: string
+        description: 'Points to ubuntu_1804_node890 release'
+        default: "andriykutsevol/ubuntu_1804_node890"
+        required: true
+      rel_tag:
+        type: string
+        description: "tag"
+        default: "2.0.0"
+        required: true 
+      rel_img_name:
+        type: string
+        description: 'rel_img_name'
+        default: "rstmap_angular_rel"
+        required: true
+      nginx_img_name:
+        type: string
+        description: 'nginx_img_name'
+        default: "rstmap_angular_nginx"
+        required: true
+
 
 
 env:
+  ECS_TASK_DEFINITION: ./RstMap_task_definition_family-revision1.json
   AWS_REGION: "us-east-1"
 
 
@@ -46,8 +63,10 @@ jobs:
       
       - uses: actions/checkout@v3    
 
-      - name: Build image
-        run: docker build --build-arg RELEASE=${{ inputs.from_release }} --progress=plain -t ${{inputs.img_name}} . -f ./Dockerfile_rel
+      - name: Build Release Image
+        run: |
+          docker build --build-arg RELEASE=${{ inputs.from_node_v_rel }}:${{inputs.rel_tag}} --progress=plain -t ${{inputs.rel_img_name}}.${{inputs.rel_tag}}  . -f ./Dockerfile_rel
+          docker push
    
   deploy_to_ecs:
     runs-on: ubuntu-latest

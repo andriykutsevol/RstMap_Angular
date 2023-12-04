@@ -63,7 +63,7 @@ jobs:
       
       - uses: actions/checkout@v3
         with:
-          ref: ${{inputs.rel_tag}}
+          ref: "${{inputs.rel_tag}}"
 
       - name: Build Release Image
         run: |
@@ -72,17 +72,17 @@ jobs:
           docker build --build-arg RELEASE=${{ inputs.prev_rel }}:${{inputs.prev_tag}} --progress=plain -t ${{inputs.rel_img_name}}:${{inputs.rel_tag}}  . -f ./Dockerfile_rel
           docker push ${{inputs.rel_img_name}}:${{inputs.rel_tag}}
       
-      - name: Build Production Nginx Image
-        run: |
-          docker build --build-arg RELEASE=${{inputs.rel_img_name}}:${{inputs.rel_tag}} --progress=plain -t ${{inputs.nginx_img_name}}:${{inputs.rel_tag}}  . -f ./Dockerfile_nginx
-          docker push ${{inputs.nginx_img_name}}:${{inputs.rel_tag}}
+      # - name: Build Production Nginx Image
+      #   run: |
+      #     docker build --build-arg RELEASE=${{inputs.rel_img_name}}:${{inputs.rel_tag}} --progress=plain -t ${{inputs.nginx_img_name}}:${{inputs.rel_tag}}  . -f ./Dockerfile_nginx
+      #     docker push ${{inputs.nginx_img_name}}:${{inputs.rel_tag}}
    
-  deploy_to_ecs:
-    runs-on: ubuntu-latest
+  # deploy_to_ecs:
+  #   runs-on: ubuntu-latest
     
-    steps:
-      - name: deploy
-        run: echo "Deploy step"
+  #   steps:
+  #     - name: deploy
+  #       run: echo "Deploy step"
 
 
 

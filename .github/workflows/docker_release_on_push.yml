@@ -93,11 +93,16 @@ jobs:
     needs: [build_containers]
 
     steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: "${{inputs.rel_tag}}"
+               
       - name: PWD
         run: pwd
       - name: Show Directory Contents
         run: |
           ls -la ./
+      
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:

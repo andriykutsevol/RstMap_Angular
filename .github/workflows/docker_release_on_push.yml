@@ -40,7 +40,7 @@ on:
 
 
 env:
-  ECS_TASK_DEFINITION: /app/RstMap_task_definition_family-revision1.json
+  ECS_TASK_DEFINITION: /home/runner/work/RstMap_Angular/RstMap_Angular/RstMap_task_definition_family-revision1.json
   AWS_REGION: us-east-1
   CONTAINER_NAME: rstmap_angular_nginx
   CONTAINER_IMAGE: andriykutsevol/rstmap_angular_nginx:2.1.0
@@ -93,10 +93,10 @@ jobs:
     needs: [build_containers]
 
     steps:
-      - name: Test step
-        run: |
-          pwd
-          ls
+      - name: PWD
+        run: pwd
+      - name: LS
+        run: ls
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:

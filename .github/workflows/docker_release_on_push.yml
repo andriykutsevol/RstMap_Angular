@@ -44,38 +44,47 @@ env:
   AWS_REGION: us-east-1
 
 
+  # an environment variable defined in a step 
+  #   will override job and 
+                  # workflow variables 
+  #     with the same name, while the step executes.
+
+  # A variable defined for a job will 
+  #   override a workflow variable with the same name, 
+  #     while the job executes.
+
 
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    # needs: [CONDUCTOR_BLOBBERS_01_TESTS]
+  # build:
+  #   runs-on: ubuntu-latest
+  #   # needs: [CONDUCTOR_BLOBBERS_01_TESTS]
 
-    steps:
-      - name: Test step
-        run: echo "Test step"
+  #   steps:
+  #     - name: Test step
+  #       run: echo "Test step"
 
-      - name: Login to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+  #     - name: Login to Docker Hub
+  #       uses: docker/login-action@v3
+  #       with:
+  #         username: ${{ secrets.DOCKERHUB_USERNAME }}
+  #         password: ${{ secrets.DOCKERHUB_TOKEN }}
       
-      - uses: actions/checkout@v3
-        with:
-          ref: "${{inputs.rel_tag}}"
+  #     - uses: actions/checkout@v3
+  #       with:
+  #         ref: "${{inputs.rel_tag}}"
 
-      - name: Build Release Image
-        run: |
-          pwd
-          ls
-          docker build --build-arg RELEASE=${{ inputs.prev_rel }}:${{inputs.prev_tag}} --progress=plain -t ${{inputs.rel_img_name}}:${{inputs.rel_tag}}  . -f ./Dockerfile_rel
-          docker push ${{inputs.rel_img_name}}:${{inputs.rel_tag}}
-      
-  #     - name: Build Production Nginx Image
+  #     - name: Build Release Image
   #       run: |
-  #         docker build --build-arg RELEASE=${{inputs.rel_img_name}}:${{inputs.rel_tag}} --progress=plain -t ${{inputs.nginx_img_name}}:${{inputs.rel_tag}}  . -f ./Dockerfile_nginx
-  #         docker push ${{inputs.nginx_img_name}}:${{inputs.rel_tag}}
+  #         pwd
+  #         ls
+  #         docker build --build-arg RELEASE=${{ inputs.prev_rel }}:${{inputs.prev_tag}} --progress=plain -t ${{inputs.rel_img_name}}:${{inputs.rel_tag}}  . -f ./Dockerfile_rel
+  #         docker push ${{inputs.rel_img_name}}:${{inputs.rel_tag}}
+      
+  # #     - name: Build Production Nginx Image
+  # #       run: |
+  # #         docker build --build-arg RELEASE=${{inputs.rel_img_name}}:${{inputs.rel_tag}} --progress=plain -t ${{inputs.nginx_img_name}}:${{inputs.rel_tag}}  . -f ./Dockerfile_nginx
+  # #         docker push ${{inputs.nginx_img_name}}:${{inputs.rel_tag}}
    
   deploy_to_ecs:
     runs-on: ubuntu-latest
@@ -86,6 +95,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
     
 
 
@@ -102,29 +112,29 @@ jobs:
 
 
 
-          # Using GitHub Actions with AWS IAM roles
-          # https://www.automat-it.com/post/using-github-actions-with-aws-iam-roles
-          # name: Example
-          # on:
-          #  pull_request:
-          #    branches: [ master ]
-           
-          # jobs:
-          #  pull_request:
-          #    runs-on: ubuntu-latest
-           
-          #    env:
-          #      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_DEV_KEY_ID }}
-          #      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_DEV_SECRET }}
-           
-          #    steps:
-          #    - name: Checkout
-          #      uses: actions/checkout@v2
-           
-          #    - name: Some AWS commands
-          #      run: |
-          #        aws --region us-east-1 .....
-          
+                            # Using GitHub Actions with AWS IAM roles
+                            # https://www.automat-it.com/post/using-github-actions-with-aws-iam-roles
+                            # name: Example
+                            # on:
+                            #  pull_request:
+                            #    branches: [ master ]
+                            
+                            # jobs:
+                            #  pull_request:
+                            #    runs-on: ubuntu-latest
+                            
+                            #    env:
+                            #      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_DEV_KEY_ID }}
+                            #      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_DEV_SECRET }}
+                            
+                            #    steps:
+                            #    - name: Checkout
+                            #      uses: actions/checkout@v2
+                            
+                            #    - name: Some AWS commands
+                            #      run: |
+                            #        aws --region us-east-1 .....
+                            
 
 
 

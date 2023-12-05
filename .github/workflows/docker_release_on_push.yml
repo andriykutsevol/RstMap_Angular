@@ -43,7 +43,7 @@ env:
   ECS_TASK_DEFINITION: ./RstMap_task_definition_family-revision1.json
   AWS_REGION: us-east-1
   CONTAINER_NAME: rstmap_angular_nginx
-  IMAGE: andriykutsevol/rstmap_angular_nginx:2.1.0
+  CONTAINER_IMAGE: andriykutsevol/rstmap_angular_nginx:2.1.0
 
 
   # an environment variable defined in a step 

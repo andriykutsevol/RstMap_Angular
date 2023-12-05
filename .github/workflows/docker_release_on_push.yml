@@ -44,6 +44,8 @@ env:
   AWS_REGION: us-east-1
   CONTAINER_NAME: rstmap_angular_nginx
   CONTAINER_IMAGE: andriykutsevol/rstmap_angular_nginx:2.1.0
+  ECS_CLUSTER: RstMap_Fargate
+  #   ECS_SERVICE: RstMap_Fargate
 
 
   # an environment variable defined in a step 
@@ -119,20 +121,16 @@ jobs:
             container-name: ${{ env.CONTAINER_NAME }}
             image: ${{ env.CONTAINER_IMAGE }}
 
+      # Registers an Amazon ECS task definition and deploys it to an ECS service.    
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+            task-definition: ${{ steps.task-def.outputs.task-definition }}
+            cluster: ${{ env.ECS_CLUSTER }}
+            # service: ${{ env.ECS_SERVICE }}
+            wait-for-service-stability: true
 
 
-
-
-
-    # steps:
-    #   - name: Deploy Amazon ECS task definition
-    #     uses: aws-actions/configure-aws-credentials@v4
-    #     with:
-    #       aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID }}
-    #       task-definition: RstMap_task_definition_family-revision1.json
-    #       service: ${{ env.ECS_SERVICE }}
-    #       cluster: ${{ env.ECS_CLUSTER }}
-    #       wait-for-service-stability: true
 
 
 

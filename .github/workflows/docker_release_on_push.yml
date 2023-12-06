@@ -121,14 +121,24 @@ jobs:
       #       container-name: ${{ env.CONTAINER_NAME }}
       #       image: ${{ env.CONTAINER_IMAGE }}
 
-      # Registers an Amazon ECS task definition and deploys it to an ECS service.    
+      # # Registers an Amazon ECS task definition and deploys it to an ECS service.    
+      # - name: Deploy Amazon ECS task definition
+      #   uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      #   with:
+      #       task-definition: ${{ steps.task-def.outputs.task-definition }}
+      #       cluster: ${{ env.ECS_CLUSTER }}
+      #       service: ${{ env.ECS_SERVICE }}
+      #       #wait-for-service-stability: true
+
+      # In the case we do not want to use 'aws-actions/amazon-ecs-deploy-task-definition@v1'    
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
-            task-definition: ${{ steps.task-def.outputs.task-definition }}
+            task-definition: ${{ env.ECS_TASK_DEFINITION }}
             cluster: ${{ env.ECS_CLUSTER }}
             service: ${{ env.ECS_SERVICE }}
             #wait-for-service-stability: true
+
 
 
 

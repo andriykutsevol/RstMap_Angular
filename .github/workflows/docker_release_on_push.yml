@@ -45,7 +45,7 @@ env:
   CONTAINER_NAME: rstmap_angular_nginx
   CONTAINER_IMAGE: andriykutsevol/rstmap_angular_nginx:2.1.0
   ECS_CLUSTER: RstMap_Fargate
-  #   ECS_SERVICE: RstMap_Fargate
+  ECS_SERVICE: RstMap_Nginx
 
 
   # an environment variable defined in a step 
@@ -127,7 +127,7 @@ jobs:
         with:
             task-definition: ${{ steps.task-def.outputs.task-definition }}
             cluster: ${{ env.ECS_CLUSTER }}
-            # service: ${{ env.ECS_SERVICE }}
+            service: ${{ env.ECS_SERVICE }}
             wait-for-service-stability: true
 
 

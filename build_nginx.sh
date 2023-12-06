@@ -10,7 +10,7 @@
 
 
 
-tag="2.0.0"
+tag="2.1.0"
 img_name="andriykutsevol/rstmap_angular_nginx:${tag}"
 container_name="rstmap_angular_nginx_${tag}"
 

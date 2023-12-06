@@ -5,7 +5,7 @@
             "name": "rstmap_angular_nginx",
             "image": "andriykutsevol/rstmap_angular_nginx:2.1.0",
             "cpu": 0,
-            "memory": 1024,
+            "memory": 2048,
             "memoryReservation": 2048,
             "portMappings": [
                 {

@@ -112,14 +112,14 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
     
-      # Inserts a container image URI into an Amazon ECS task definition JSON file, creating a new task definition file.    
-      - name: Fill in the new image ID in the Amazon ECS task definition
-        id: task-def
-        uses: aws-actions/amazon-ecs-render-task-definition@v1
-        with:
-            task-definition: ${{ env.ECS_TASK_DEFINITION }}
-            container-name: ${{ env.CONTAINER_NAME }}
-            image: ${{ env.CONTAINER_IMAGE }}
+      # # Inserts a container image URI into an Amazon ECS task definition JSON file, creating a new task definition file.    
+      # - name: Fill in the new image ID in the Amazon ECS task definition
+      #   id: task-def
+      #   uses: aws-actions/amazon-ecs-render-task-definition@v1
+      #   with:
+      #       task-definition: ${{ env.ECS_TASK_DEFINITION }}
+      #       container-name: ${{ env.CONTAINER_NAME }}
+      #       image: ${{ env.CONTAINER_IMAGE }}
 
       # Registers an Amazon ECS task definition and deploys it to an ECS service.    
       - name: Deploy Amazon ECS task definition

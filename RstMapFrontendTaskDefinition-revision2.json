@@ -1,10 +1,11 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:us-east-1:913330223181:task-definition/RstMap_task_definition_family:12",
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:913330223181:task-definition/RstMapFrontendTaskDefinition:2",
     "containerDefinitions": [
         {
             "name": "rstmap_angular_nginx",
             "image": "andriykutsevol/rstmap_angular_nginx:2.1.0",
             "cpu": 0,
+            "memory": 2048,
             "portMappings": [
                 {
                     "name": "rstmap_angular_nginx-80-tcp",
@@ -24,7 +25,7 @@
                 "logDriver": "awslogs",
                 "options": {
                     "awslogs-create-group": "true",
-                    "awslogs-group": "/ecs/RstMap_task_definition_family",
+                    "awslogs-group": "/ecs/RstMapFrontendTaskDefinition",
                     "awslogs-region": "us-east-1",
                     "awslogs-stream-prefix": "ecs"
                 },
@@ -32,11 +33,11 @@
             }
         }
     ],
-    "family": "RstMap_task_definition_family",
+    "family": "RstMapFrontendTaskDefinition",
     "taskRoleArn": "arn:aws:iam::913330223181:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::913330223181:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 12,
+    "revision": 2,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -76,7 +77,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2023-12-09T16:44:47.782Z",
+    "registeredAt": "2023-12-09T19:01:18.078Z",
     "registeredBy": "arn:aws:iam::913330223181:root",
     "tags": []
 }

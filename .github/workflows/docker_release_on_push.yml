@@ -40,7 +40,7 @@ on:
 
 
 env:
-  ECS_TASK_DEFINITION: ./RstMap_task_definition_family-revision12.json
+  ECS_TASK_DEFINITION: ./RstMapFrontendTaskDefinition-revision2.json
   AWS_REGION: us-east-1
   CONTAINER_NAME: rstmap_angular_nginx
   CONTAINER_IMAGE: andriykutsevol/rstmap_angular_nginx:2.1.0

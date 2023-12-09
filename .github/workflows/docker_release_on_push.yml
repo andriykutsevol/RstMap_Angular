@@ -44,8 +44,8 @@ env:
   AWS_REGION: us-east-1
   CONTAINER_NAME: rstmap_angular_nginx
   CONTAINER_IMAGE: andriykutsevol/rstmap_angular_nginx:2.1.0
-  ECS_CLUSTER: RstMap_Fargate
-  ECS_SERVICE: RstMap_Nginx
+  ECS_CLUSTER: RstMapCluster
+  ECS_SERVICE: RstMapService3
 
 
   # an environment variable defined in a step 
